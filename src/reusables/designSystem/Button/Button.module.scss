@@ -1,0 +1,10 @@
+@import "src/reusables/designSystem/theme.scss";
+
+.btn {
+  color: $textColor;
+  background-color: $btnColor;
+
+  &:hover {
+    background-color: $btnColorHover;
+  }
+}
