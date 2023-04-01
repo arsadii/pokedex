@@ -11,7 +11,11 @@ type PokemonCardProps = {
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonData }) => {
   return (
-    <Card key={pokemonData.key} className={Styles["container"]}>
+    <Card
+      backgroundColor={"dark"}
+      key={pokemonData.key}
+      className={Styles["container"]}
+    >
       <img src={pokemonData.sprite} alt="" />
       <Heading size={"md"}>{pokemonData.species}</Heading>
       <Text>
