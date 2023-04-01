@@ -1,6 +1,15 @@
 @import "src/reusables/designSystem/theme.scss";
 
-.app {
+.landing {
   background-color: $primaryBgColor;
   min-height: 100vh;
+  padding: 0 2rem;
+
+  .hero {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
