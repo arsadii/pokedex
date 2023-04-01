@@ -30,12 +30,12 @@ const getAllPokemon = graphql(`
   }
 `);
 
-const useGetAllPokemonQuery = () => {
+const useGetAllPokemonQuery = (take: number) => {
   return useQuery({
-    queryKey: ["getAllPokemon"],
+    queryKey: ["getAllPokemon", take],
     queryFn: async () =>
       await request(import.meta.env.VITE_API_BASE_URL, getAllPokemon, {
-        take: 10,
+        take: take,
       }),
   });
 };

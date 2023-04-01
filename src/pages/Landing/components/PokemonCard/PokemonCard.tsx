@@ -17,8 +17,10 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonData }) => {
       className={Styles["container"]}
     >
       <img src={pokemonData.sprite} alt="" />
-      <Heading size={"md"}>{pokemonData.species}</Heading>
-      <Text>
+      <Heading textAlign={"center"} size={"md"}>
+        {pokemonData.species}
+      </Heading>
+      <Text textAlign={"center"}>
         Types : {pokemonData.types.map((type) => type.name).join(", ")}
       </Text>
     </Card>

@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./Landing.module.scss";
 import Heading from "src/reusables/designSystem/Heading/Heading";
 import Text from "src/reusables/designSystem/Text/Text";
-import PokedexList from "./components/PokemonList";
+import PokedexList from "./components/PokemonList/PokemonList";
 
 const Landing: React.FC = () => {
   return (
