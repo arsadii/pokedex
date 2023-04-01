@@ -9,7 +9,11 @@ type HeadingProps = CHeadingProps;
 
 const Heading: React.FC<HeadingProps> = ({ children, ...props }) => {
   return (
-    <CHeading {...props} className={Styles["heading"]}>
+    <CHeading
+      {...props}
+      className={Styles["heading"]}
+      style={{ fontFamily: "Rajdhani, sans-serif" }}
+    >
       {children}
     </CHeading>
   );
