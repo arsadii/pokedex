@@ -17,7 +17,7 @@ const Landing: React.FC = () => {
     <main className={Styles["landing"]}>
       <div className={Styles["hero"]}>
         <Heading size={"4xl"}>Pokedex</Heading>
-        <Text fontSize={"2xl"}>Catch your Pokemon</Text>
+        <Text fontSize={"2xl"}>Know your Pokemon</Text>
         <Input
           color={"white"}
           marginTop={"1rem"}
