@@ -3,9 +3,9 @@ import { request } from "graphql-request";
 
 import { graphql } from "src/gql";
 
-const getAllPokemon = graphql(`
-  query GetAllPokemon($take: Int) {
-    getAllPokemon(take: $take) {
+const getFuzzyPokemon = graphql(`
+  query GetFuzzyPokemon($pokemon: String!, $take: Int) {
+    getFuzzyPokemon(pokemon: $pokemon, take: $take) {
       backSprite
       baseForme
       baseSpecies
@@ -30,15 +30,16 @@ const getAllPokemon = graphql(`
   }
 `);
 
-const useGetAllPokemonQuery = (take: number, keyword?: string) => {
+const useGetFuzzyPokemon = (take: number, keyword?: string) => {
   return useQuery({
-    queryKey: ["getAllPokemon", take],
+    queryKey: ["getFuzzyPokemon", take],
     queryFn: async () =>
-      await request(import.meta.env.VITE_API_BASE_URL, getAllPokemon, {
+      await request(import.meta.env.VITE_API_BASE_URL, getFuzzyPokemon, {
         take: take,
+        pokemon: keyword ?? "",
       }),
-    enabled: !keyword,
+    enabled: !!keyword,
   });
 };
 
-export default useGetAllPokemonQuery;
+export default useGetFuzzyPokemon;

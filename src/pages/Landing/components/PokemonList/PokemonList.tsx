@@ -5,24 +5,40 @@ import PokemonCard from "../PokemonCard";
 import { Pokemon } from "src/gql/graphql";
 import Button from "src/reusables/designSystem/Button/Button";
 import Styles from "./PokemonList.module.scss";
+import useGetFuzzyPokemon from "../../hooks/useGetFuzzyPokemon";
 
-const PokemonList: React.FC = () => {
+type PokemonListProps = {
+  keyword?: string;
+};
+
+const PokemonList: React.FC<PokemonListProps> = ({ keyword }) => {
   const [take, setTake] = useState<number>(10);
   const [currentPokemons, setCurrentPokemons] = useState<Pokemon[]>();
 
-  const { data, isLoading } = useGetAllPokemonQuery(take);
+  const { data, isLoading } = useGetAllPokemonQuery(take, keyword);
+
+  const { data: searchData, isLoading: searchLoading } = useGetFuzzyPokemon(
+    take,
+    keyword
+  );
 
   useEffect(() => {
-    if (data?.getAllPokemon) {
-      setCurrentPokemons(data?.getAllPokemon as Pokemon[]);
+    if (keyword?.length) {
+      if (searchData?.getFuzzyPokemon) {
+        setCurrentPokemons(searchData?.getFuzzyPokemon as Pokemon[]);
+      }
+    } else {
+      if (data?.getAllPokemon) {
+        setCurrentPokemons(data?.getAllPokemon as Pokemon[]);
+      }
     }
-  }, [data]);
+  }, [data, searchData, keyword]);
 
   const handlePaginate = () => {
     setTake(take + 10);
   };
 
-  if (isLoading && !currentPokemons?.length) {
+  if ((isLoading || searchLoading) && !currentPokemons?.length) {
     return <Spinner />;
   }
 
