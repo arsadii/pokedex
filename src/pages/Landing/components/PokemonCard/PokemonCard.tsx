@@ -4,6 +4,7 @@ import Card from "src/reusables/designSystem/Card/Card";
 import Heading from "src/reusables/designSystem/Heading/Heading";
 import Styles from "./PokemonCard.module.scss";
 import Text from "src/reusables/designSystem/Text/Text";
+import { NavLink } from "react-router-dom";
 
 type PokemonCardProps = {
   pokemonData: Pokemon;
@@ -23,6 +24,12 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonData }) => {
       <Text textAlign={"center"}>
         Types : {pokemonData.types.map((type) => type.name).join(", ")}
       </Text>
+      <NavLink
+        className={Styles["detail-link"]}
+        to={`/detail/${pokemonData.key}`}
+      >
+        See details
+      </NavLink>
     </Card>
   );
 };
